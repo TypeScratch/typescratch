@@ -1,0 +1,50 @@
+{
+  "name": "typescratch",
+  "version": "0.0.0",
+  "private": false,
+  "description": "MIT Scratch functionality in TypeScript",
+  "author": {
+    "name": "David Cho-Lerat",
+    "email": "TypeScratch@david.cho-lerat.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TypeScratch/typescratch.git"
+  },
+  "dependencies": {
+    "@types/jest": "24.0.19",
+    "@types/node": "12.11.5",
+    "@types/react": "16.9.9",
+    "@types/react-dom": "16.9.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "3.2.0",
+    "typescript": "3.6.4"
+  },
+  "scripts": {
+    "start": "BROWSER=none react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "publish": "npm publish --access public"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=13.0.1"
+  }
+}
