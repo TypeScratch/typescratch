@@ -5,8 +5,8 @@ import { Stage } from "./domain/Stage";
 import { ScratchScript } from "./ScratchScript";
 // tslint:disable-next-line:no-default-import
 
-const CANVAS_WIDTH = 480; // window.innerWidth - 20; // Scratch: 480
-const CANVAS_HEIGHT = 360; // window.innerHeight - 20; // Sratch: 360
+const CANVAS_WIDTH = window.innerWidth - 20; // Scratch: 480
+const CANVAS_HEIGHT = window.innerHeight - 30; // Sratch: 360
 const canvasId = "stage";
 
 export const App = () => {
@@ -18,15 +18,24 @@ export const App = () => {
       width: CANVAS_WIDTH
     });
 
-    stage
-      .addBackdrop({ backdropSrc: "desert.png" })
-      .then(() => ScratchScript(stage))
+    ScratchScript(stage)
       .then(() => {
         window.clearInterval(stage.interval);
       })
       .catch(err => {
         throw err;
       });
+    // stage
+    // .addBackdrop({
+    //   backdropSrc: "desert.png"
+    // })
+    // .then(() => ScratchScript(stage))
+    // .then(() => {
+    //   window.clearInterval(stage.interval);
+    // })
+    // .catch(err => {
+    //   throw err;
+    // });
   });
 
   return (
