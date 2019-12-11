@@ -165,6 +165,10 @@ export class Stage {
     return this._interval;
   }
 
+  public removeBackdrop() {
+    this._backdrop = undefined;
+  }
+
   public removeSpriteOrText(spriteOrText: Sprite | Text) {
     const spriteOrTextIndex = this._spritesByLayer.indexOf(spriteOrText);
 
