@@ -92,6 +92,8 @@ export class Stage {
     });
 
     this._spritesByLayer.push(text);
+
+    return text;
   }
 
   public drawBackdrop() {
@@ -159,6 +161,14 @@ export class Stage {
 
   public get interval() {
     return this._interval;
+  }
+
+  public removeSpriteOrText(spriteOrText: Sprite | Text) {
+    const spriteOrTextIndex = this._spritesByLayer.indexOf(spriteOrText);
+
+    if (spriteOrTextIndex !== -1) {
+      this._spritesByLayer.splice(spriteOrTextIndex, 1);
+    }
   }
 
   public async waitForNextFrame() {
