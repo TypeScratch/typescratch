@@ -13,6 +13,21 @@ code {
 }
 
 @font-face {
+  font-family: "Curly";
+  src: local("Curly"), url(./fonts/Curly.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Handwriting";
+  src: local("Hnadwriting"), url(./fonts/Handwriting.ttf) format("truetype");
+}
+
+@font-face {
   font-family: "Marker";
   src: local("Marker"), url(./fonts/Marker.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Pixel";
+  src: local("Pixel"), url(./fonts/Pixel.ttf) format("truetype");
 }
