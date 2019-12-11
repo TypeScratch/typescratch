@@ -121,18 +121,20 @@ export class Stage {
         const text =
           typeof sprite.text === "string" ? sprite.text : sprite.text();
         this.ctx.font = `${sprite.fontSize}px ${sprite.fontFamily}`;
-        this.ctx.fillStyle = "black";
-        this.ctx.fillText(text, sprite.x - 1, -sprite.y - 1);
-        this.ctx.fillText(text, sprite.x + 0, -sprite.y - 1);
-        this.ctx.fillText(text, sprite.x + 1, -sprite.y - 1);
-        this.ctx.fillText(text, sprite.x - 1, -sprite.y + 0);
-        this.ctx.fillText(text, sprite.x + 0, -sprite.y + 0);
-        this.ctx.fillText(text, sprite.x + 1, -sprite.y + 0);
-        this.ctx.fillText(text, sprite.x - 1, -sprite.y + 1);
-        this.ctx.fillText(text, sprite.x + 0, -sprite.y + 1);
-        this.ctx.fillText(text, sprite.x + 1, -sprite.y + 1);
-        this.ctx.fillText(text, sprite.x, -sprite.y);
-        this.ctx.fillStyle = "white";
+        if (sprite.shadowColor && sprite.shadowColor !== "transparent") {
+          this.ctx.fillStyle = sprite.shadowColor;
+          this.ctx.fillText(text, sprite.x - 1, -sprite.y - 1);
+          this.ctx.fillText(text, sprite.x + 0, -sprite.y - 1);
+          this.ctx.fillText(text, sprite.x + 1, -sprite.y - 1);
+          this.ctx.fillText(text, sprite.x - 1, -sprite.y + 0);
+          this.ctx.fillText(text, sprite.x + 0, -sprite.y + 0);
+          this.ctx.fillText(text, sprite.x + 1, -sprite.y + 0);
+          this.ctx.fillText(text, sprite.x - 1, -sprite.y + 1);
+          this.ctx.fillText(text, sprite.x + 0, -sprite.y + 1);
+          this.ctx.fillText(text, sprite.x + 1, -sprite.y + 1);
+          this.ctx.fillText(text, sprite.x, -sprite.y);
+        }
+        this.ctx.fillStyle = sprite.color;
         this.ctx.fillText(text, sprite.x, -sprite.y);
 
         return;
