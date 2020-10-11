@@ -13,7 +13,7 @@ export interface NewTextValues {
 const defaultValues = {
   color: "black",
   fontFamily: "Arial",
-  fontSize: 16
+  fontSize: 16,
 };
 
 export class Text {
@@ -24,7 +24,6 @@ export class Text {
   public readonly text: string | (() => string);
   public readonly x: number;
   public readonly y: number;
-  private readonly _stage: Stage;
 
   public constructor({
     color = defaultValues.color,
@@ -34,10 +33,8 @@ export class Text {
     stage,
     text,
     x = stage.minX + fontSize,
-    y = stage.maxY - fontSize * 2
+    y = stage.maxY - fontSize * 2,
   }: NewTextValues & { stage: Stage }) {
-    this._stage = stage;
-
     this.color = color;
     this.fontFamily = fontFamily;
     this.fontSize = fontSize;

@@ -6,7 +6,7 @@ export const defaultValues = {
   canvasId: "stage",
   height: 360,
   nbFramesPerSecond: 25,
-  width: 480
+  width: 480,
 };
 
 export class Stage {
@@ -28,7 +28,7 @@ export class Stage {
     canvasId = defaultValues.canvasId,
     height = defaultValues.height,
     nbFramesPerSecond = defaultValues.nbFramesPerSecond,
-    width = defaultValues.width
+    width = defaultValues.width,
   }: {
     canvasId?: string;
     height?: number;
@@ -65,6 +65,10 @@ export class Stage {
     }, this._delayBetweenFramesMs);
   }
 
+  public get interval() {
+    return this._interval;
+  }
+
   public async addBackdrop({ backdropSrc }: { backdropSrc: string }) {
     this._backdrop = new Costume({ src: backdropSrc });
 
@@ -75,7 +79,7 @@ export class Stage {
     const sprite = new Sprite({
       ...attributes,
       layer: this._spritesByLayer.length,
-      stage: this
+      stage: this,
     });
 
     this._spritesByLayer.push(sprite);
@@ -88,7 +92,7 @@ export class Stage {
   public addText(attributes: NewTextValues) {
     const text = new Text({
       ...attributes,
-      stage: this
+      stage: this,
     });
 
     this._spritesByLayer.push(text);
@@ -116,7 +120,7 @@ export class Stage {
   }
 
   public drawSprites() {
-    this._spritesByLayer.forEach(sprite => {
+    this._spritesByLayer.forEach((sprite) => {
       if (sprite instanceof Text) {
         const text =
           typeof sprite.text === "string" ? sprite.text : sprite.text();
@@ -161,8 +165,8 @@ export class Stage {
     });
   }
 
-  public get interval() {
-    return this._interval;
+  public onKeyDown(callback: (e: KeyboardEvent) => void) {
+    document.onkeydown = callback;
   }
 
   public removeBackdrop() {
@@ -178,7 +182,7 @@ export class Stage {
   }
 
   public async waitForNextFrame() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this._awaiters.push(resolve);
     });
   }

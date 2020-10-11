@@ -7,25 +7,25 @@ export const ScratchScript = async (stage: Stage) => {
     color: "white",
     fontFamily: "Marker",
     shadowColor: "black",
-    text: () => `Cat x : ${cat.x.toPrecision(9)}`
+    text: () => `Cat x : ${cat.x.toPrecision(9)}`,
   });
 
   stage.addText({
     color: "white",
     shadowColor: "black",
     text: () => `Cat y : ${cat.y.toPrecision(9)}`,
-    y: stage.maxY - 60
+    y: stage.maxY - 60,
   });
 
   stage.addText({
     color: "white",
     shadowColor: "black",
     text: () => `Cat direction : ${cat.direction.toString()}`,
-    y: stage.maxY - 90
+    y: stage.maxY - 90,
   });
 
   const apple = await stage.addSprite({
-    costume: "apple"
+    costume: "apple",
   });
 
   const catScript = async () => {

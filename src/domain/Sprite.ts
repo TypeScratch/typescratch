@@ -3,13 +3,13 @@ import { Stage } from "./Stage";
 
 export enum DragMode {
   DRAGGABLE,
-  NOT_DRAGGABLE
+  NOT_DRAGGABLE,
 }
 
 export enum RotationStyle {
   ALL_AROUND,
   DONT_ROTATE,
-  LEFT_RIGHT
+  LEFT_RIGHT,
 }
 
 export interface NewSpriteValues {
@@ -33,7 +33,7 @@ const defaultValues = {
   size: 100,
   visible: true,
   x: 0,
-  y: 0
+  y: 0,
 };
 
 export class Sprite {
@@ -66,7 +66,7 @@ export class Sprite {
     stage,
     visible = defaultValues.visible,
     x = defaultValues.x,
-    y = defaultValues.y
+    y = defaultValues.y,
   }: NewSpriteValues & { stage: Stage }) {
     this._stage = stage;
 
@@ -119,17 +119,6 @@ export class Sprite {
     return this._layer;
   }
 
-  public async load() {
-    await this.costume.load();
-
-    this._height = this.costume.height;
-    this._width = this.costume.width;
-    this._maxX = this._stage.maxX + (this._width / 2 + 1);
-    this._maxY = this._stage.maxY + (this._height / 2 + 1);
-    this._minX = this._stage.minX - (this._width / 2 + 1);
-    this._minY = this._stage.minY - (this._height / 2 + 1);
-  }
-
   public get maxX() {
     return this._maxX;
   }
@@ -167,6 +156,17 @@ export class Sprite {
 
   public get y(): number {
     return this._y;
+  }
+
+  public async load() {
+    await this.costume.load();
+
+    this._height = this.costume.height;
+    this._width = this.costume.width;
+    this._maxX = this._stage.maxX + (this._width / 2 + 1);
+    this._maxY = this._stage.maxY + (this._height / 2 + 1);
+    this._minX = this._stage.minX - (this._width / 2 + 1);
+    this._minY = this._stage.minY - (this._height / 2 + 1);
   }
 
   public changeXBy(step: number) {

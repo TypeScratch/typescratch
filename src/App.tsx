@@ -15,7 +15,7 @@ export const App = () => {
       canvasId,
       height: CANVAS_HEIGHT,
       nbFramesPerSecond: 25,
-      width: CANVAS_WIDTH
+      width: CANVAS_WIDTH,
     });
 
     stage
@@ -24,7 +24,7 @@ export const App = () => {
       .then(() => {
         window.clearInterval(stage.interval);
       })
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   });

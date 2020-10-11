@@ -1,5 +1,5 @@
 export const defaultValues = {
-  src: "ScratchCat-costume1"
+  src: "ScratchCat-costume1",
 };
 
 export class Costume {
@@ -9,7 +9,7 @@ export class Costume {
   private _width = 0;
 
   public constructor({
-    src = defaultValues.src
+    src = defaultValues.src,
   }: { src: string } = defaultValues) {
     let resolvedSrc = src;
 
@@ -22,23 +22,6 @@ export class Costume {
     }
 
     this._src = resolvedSrc;
-  }
-
-  public async load() {
-    if (this._width) {
-      return Promise.resolve();
-    }
-
-    await new Promise(resolve => {
-      this._img.src = this._src;
-
-      this._img.onload = () => {
-        this._width = this._img.width;
-        this._height = this._img.height;
-
-        resolve();
-      };
-    });
   }
 
   public get height() {
@@ -55,5 +38,22 @@ export class Costume {
 
   public get width() {
     return this._width;
+  }
+
+  public async load() {
+    if (this._width) {
+      return Promise.resolve();
+    }
+
+    await new Promise((resolve) => {
+      this._img.src = this._src;
+
+      this._img.onload = () => {
+        this._width = this._img.width;
+        this._height = this._img.height;
+
+        resolve();
+      };
+    });
   }
 }

@@ -12,21 +12,24 @@
     "url": "https://github.com/TypeScratch/typescratch.git"
   },
   "dependencies": {
-    "@types/jest": "24.0.19",
-    "@types/node": "12.11.5",
-    "@types/react": "16.9.9",
-    "@types/react-dom": "16.9.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.8",
+    "@types/react": "^16.9.51",
+    "@types/react-dom": "^16.9.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "3.2.0",
     "typescript": "3.6.4"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "publish": "npm publish --access public"
+    "lint": "tslint --type-check -p . -c tslint.json 'src/**/*.{ts,tsx}' -e 'src/react-app-env.d.ts' -e 'src/serviceWorker.ts'",
+    "prebuild": "npm run prettier && npm run lint",
+    "prestart": "npm run prettier && npm run lint",
+    "pretest": "npm run prettier && npm run lint && \\rm -rf coverage/",
+    "prettier": "prettier --write 'src/**/*.{ts,tsx}' package.json",
+    "start": "BROWSER=none react-scripts start",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,11 +51,25 @@
     "node": ">=13.0.1"
   },
   "devDependencies": {
-    "netlify": "^3.0.0",
-    "netlify-cli": "^2.24.0",
-    "prettier": "^1.18.2",
-    "tslint": "^5.20.0",
+    "caniuse-lite": "^1.0.30001147",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "netlify": "^4.8.0",
+    "netlify-cli": "^2.65.1",
+    "prettier": "^2.1.2",
+    "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1"
+    "tslint-plugin-prettier": "^2.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run lint",
+      "pre-push": "lint-staged && npm run lint"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md,json}": [
+      "prettier --write"
+    ]
   }
 }
